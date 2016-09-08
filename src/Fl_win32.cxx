@@ -1742,6 +1742,19 @@ void Fl_Window::fullscreen_off_x(int X, int Y, int W, int H) {
   Fl::handle(FL_FULLSCREEN, this);
 }
 
+/* from discussion at
+ * https://groups.google.com/d/msg/fltkgeneral/Ga_FEutXUKk/bJkFe20yL0wJ
+ */
+void Fl_Window::set_opacity(float alpha) {
+  HWND hwnd = fl_xid(this);
+
+  LONG_PTR exstyle = GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+  if (!(exstyle & WS_EX_LAYERED)) {
+    SetWindowLongPtr(hwnd, GWL_EXSTYLE, exstyle | WS_EX_LAYERED);
+  }
+  SetLayeredWindowAttributes(hwnd, 0, (BYTE)(alpha * 0xFF), LWA_ALPHA);
+}
+
 
 ////////////////////////////////////////////////////////////////
 

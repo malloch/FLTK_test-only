@@ -157,6 +157,7 @@ private:
   void _Fl_Window(); // constructor innards
   void fullscreen_x(); // platform-specific part of sending a window to full screen
   void fullscreen_off_x(int X, int Y, int W, int H);// platform-specific part of leaving full screen
+  void set_opacity_x(float alpha);// platform-specific part of setting opacity
 
   // unimplemented copy ctor and assignment operator
   Fl_Window(const Fl_Window&);
@@ -576,6 +577,10 @@ public:
     \see void Fl_Window::fullscreen()
     */
   void fullscreen_screens(int top, int bottom, int left, int right);
+  /**
+    Sets the opacity of the window.
+   */
+  void set_opacity(float alpha);
   /**
     Iconifies the window.  If you call this when shown() is false
     it will show() it as an icon.  If the window is already

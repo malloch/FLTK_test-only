@@ -2323,6 +2323,16 @@ void Fl_Window::fullscreen_off_x(int X, int Y, int W, int H) {
   }
 }
 
+/* from discussion at
+ * https://groups.google.com/d/msg/fltkgeneral/Ga_FEutXUKk/bJkFe20yL0wJ
+ */
+void Fl_Window::set_opacity_x(float alpha) {
+  Atom atom = XInternAtom(fl_display, "_NET_WM_WINDOW_OPACITY", False);
+  uint32_t opacity = (uint32_t)(UINT32_MAX * alpha);
+  XChangeProperty(fl_display, fl_xid(this), atom, XA_CARDINAL, 32,
+                  PropModeReplace, (unsigned char *)&opacity, 1);
+}
+
 ////////////////////////////////////////////////////////////////
 
 // A subclass of Fl_Window may call this to associate an X window it

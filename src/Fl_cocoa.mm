@@ -2901,6 +2901,11 @@ void Fl_Window::fullscreen_off_x(int X, int Y, int W, int H) {
   Fl::handle(FL_FULLSCREEN, this);
 }
 
+void Fl_Window::set_opacity_x(float alpha)
+{
+  [fl_xid(this) setAlphaValue:alpha];
+}
+
 /*
  * Initialize the given port for redraw and call the window's flush() to actually draw the content
  */ 

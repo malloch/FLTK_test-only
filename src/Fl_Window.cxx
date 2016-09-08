@@ -506,6 +506,10 @@ void Fl_Window::wait_for_expose() {
 }
 #endif  // ! __APPLE__
 
+void Fl_Window::set_opacity(float alpha) {
+  set_opacity_x(alpha);
+}
+
 //
 // End of "$Id$".
 //
